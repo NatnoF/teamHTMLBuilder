@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { type } = require("os");
 
 const teamMembers = [];
 const idArray = [];
@@ -32,16 +33,55 @@ function mainMenu()
                     }
                     return "Please enter a name";
                 }
+            },
+            {
+                type: "input",
+                name: "managerId",
+                message: "What is your manager's ID number?",
+                validate: answer =>
+                {
+                    if (answer !== "" && !isNaN(typeof(parseInt(answer))))
+                    {
+                        return true;
+                    }
+                    return "Please enter an ID number";
+                }
+            },
+            {
+                type: "input",
+                name: "managerEmail",
+                message: "What is your manager's email address?",
+                validate: answer =>
+                {
+                    if (answer !== "" && answer.includes("@") && answer.includes(".com"))
+                    {
+                        return true;
+                    }
+                    return "Please enter an email address";
+                }
+            },
+            {
+                type: "input",
+                name: "managerOffice",
+                message: "What is your manager's office number?",
+                validate: answer =>
+                {
+                    if (answer !== "" && !isNaN(typeof(parseInt(answer))))
+                    {
+                        return true;
+                    }
+                    return "Please enter an office number";
+                }
             }
-        ]).then(answer)
+        ]).then(answer =>
         {
             // Creating Manager
-            const manager = new Manager(answers.id);
+            const manager = new Manager(answer.managerName, answer.managerId, answer.managerEmail, answer.managerOffice);
             teamMembers.push(manager);
-            idArray.push(answers.id);
+            idArray.push(answer.managerId);
 
             // createTeam(); (will uncomment when finished)
-        }
+        });
     }
     // createManager(); (will uncomment when finished)
 }
