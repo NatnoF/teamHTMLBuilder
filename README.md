@@ -5,6 +5,10 @@
 ## Description 
 This project will use inquirer to ask you about your team's make-up and build an HTML file displaying each team member. So it will take in All member's name, id, email as well as one unique thing for each of the three roles: Manager, Engineer, and Intern. For the intern it will ask for the school they're attending, for the engineer it will ask for their github, and for the manager it will ask for their office number. Once the data is collected it will append it to the page in a stylish way, in the form of cards.
 
+![](/assets/teamHTMLBuilder.gif)
+
+![](/assets/teamHTMLBuilder.png)
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
